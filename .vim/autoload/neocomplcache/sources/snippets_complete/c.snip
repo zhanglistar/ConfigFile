@@ -1,57 +1,47 @@
 snippet     if
 abbr        if () {}
-    if (${1:/* condition */}) 
-    {
+    if (${1:/* condition */}) {
         ${0:/* code */}
     }
 
 snippet else
-    else 
-    {
+    else {
         ${0}
     }
 
 snippet elseif
-    else if (${1:/* condition */}) 
-    {
+    else if (${1:/* condition */}) {
         ${0}
     }
 
 snippet     ifelse
 abbr        if () {} else {}
-    if (${1:condition}) 
-    {
+    if (${1:condition}) {
         ${2}
-    } 
-    else 
-    {
+    } else {
         ${3}
     }
 
 snippet     for
 abbr        for () {}
-    for (${1} = 0; $1 < ${2}; $1++) 
-    {
+    for (${1} = 0; $1 < ${2}; $1++) {
         ${0}
     }
 
 snippet     while
 abbr        while () {}
-    while (${1:/* condition */}) 
-    {
+    while (${1:/* condition */}) {
         ${0:/* code */}
     }
 
 snippet     do_while
-    do 
-    {
+    do {
         ${0:/* code */}
     } while (${1:/* condition */});
 
 snippet     switch
 abbr        switch () {}
-    switch (${1:var}) 
-    {
+    switch (${1:var}) {
         case ${2:val}:
             ${0}
             break;
@@ -59,29 +49,25 @@ abbr        switch () {}
 
 snippet     function
 abbr        func() {}
-    ${1:void} ${2:func_name}(${3}) 
-    {
+    ${1:void} ${2:func_name}(${3}) {
         ${0}
     }
 
 snippet     struct
 abbr        struct {}
-    struct ${1:name} 
-    {
+    struct ${1:name} {
         ${0:/* data */}
     };
 
 # Typedef struct
 snippet struct_typedef
-    typedef struct ${1:name}
-    {
+    typedef struct ${1:name}{
         ${0:/* data */}
     };
 
 snippet     enum
 abbr        enum {}
-    enum ${1:name} 
-    {
+    enum ${1:name} {
         ${0}
     };
 

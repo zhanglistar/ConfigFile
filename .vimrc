@@ -1,48 +1,49 @@
 set nocp
 set backspace=indent,eol,start
+set t_Co=256
 syntax enable
 filetype plugin on
-if filereadable("/etc/vim/vimrc.local")
-source /etc/vim/vimrc.local
-endif
 
-set mouse=a
+"set mouse=a
 set selection=inclusive
+set hlsearch
 set expandtab
 set smarttab
 set autoread
 set incsearch
 "set so=7
 set tabstop=4
-set autoindent shiftwidth=2
+set autoindent shiftwidth=4
 set smartindent
 set wrap
-set autochdir
+"set autochdir
 set cindent
 set cino=g0to(sus
 set ignorecase
 set shiftwidth=4
 set iskeyword+=_,$,@,%,#
+set ambiwidth=single
+" use system clipboard
+set clipboard=unnamedplus
 
 " good!!! 
-inoremap $1 ()<esc>i
-inoremap $2 []<esc>i
-inoremap $3 {}<esc>i
-inoremap $4 {<esc>o}<esc>O
-" confilict with php's $
+"inoremap $1 ()<esc>i
+"inoremap $2 []<esc>i
+"inoremap $3 {}<esc>i
+"inoremap $4 {<esc>o}<esc>O
 "inoremap $q ''<esc>i
 "inoremap $e ""<esc>i
 "inoremap $t <><esc>i
 "
-vnoremap $1 <esc>`>a)<esc>`<i(<esc>
-vnoremap $2 <esc>`>a]<esc>`<i[<esc>
-vnoremap $3 <esc>`>a}<esc>`<i{<esc>
-vnoremap $$ <esc>`>a"<esc>`<i"<esc>
+"vnoremap $1 <esc>`>a)<esc>`<i(<esc>
+"vnoremap $2 <esc>`>a]<esc>`<i[<esc>
+"vnoremap $3 <esc>`>a}<esc>`<i{<esc>
+"vnoremap $$ <esc>`>a"<esc>`<i"<esc>
 "vnoremap $q <esc>`>a'<esc>`<i'<esc>
 "vnoremap $e <esc>`>a"<esc>`<i"<esc>
 "
 "map j <C-f>
-map <space> <C-f>
+"map <space> <C-f>
 map n <C-b>
 
 "
@@ -59,13 +60,13 @@ let Tlist_Ctags_Cmd = '/usr/bin/ctags'
 let Tlist_Show_One_File = 1
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_Right_Window = 1
-set nohlsearch
+
 let &termencoding=&encoding
-set fileencodings=cp936,ucs-bom,utf-8,gbk
-set fileencoding=cp936
+set fileencodings=utf-8,cp936,ucs-bom,gbk
+"set fileencoding=cp936
+set fileencoding=utf-8
 "set encoding=cp936
 set encoding=utf-8
-"colorscheme desert
 " cscope
 if has("cscope")
 set csprg=/usr/bin/cscope
@@ -113,7 +114,7 @@ map <silent><leader>t :NERDTreeToggle<cr>
 " another explorer
 map <silent><leader>e :Ex<cr>
 " only one window
-map <silent><leader>m :only<cr>
+"map <silent><leader>m :only<cr>
 " A.vim
 map <silent><leader>a :A<cr>
 " omnicppcomplete
@@ -122,7 +123,6 @@ let OmniCpp_SelectFirstItem = 0
 map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 set tags+=/home/listar/cppstltags
 " pydiction
-filetype plugin on
 let g:pydiction_location = '/home/listar/.vim/tools/pydiction/complete-dict'
 "php set
 "au FileType php source /usr/share/vim/vim72/colors/murphy.vim
@@ -155,12 +155,11 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
 " code_complete
 let g:completekey="<c-j>"
-colorscheme desert
+"colorscheme desert256
 syntax enable
 filetype plugin on
-set t_Co=256
-hi normal ctermbg=black
-imap jj <ESC>
+"hi normal ctermbg=black
+"imap jj <ESC>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if(has("win32") || has("win95") || has("win64") || has("win16"))
@@ -262,26 +261,189 @@ autocmd BufNewFile *.c 0 r ~/.vim/template/gnuc.tpl
 autocmd BufNewFile *.py 0 r ~/.vim/template/python.tpl
 
 " minibufexpl.vim
-let g:miniBufExplMapWindowNavVim=1
-let g:miniBufExplMapWindowNavArrows=1
-let g:miniBufExplMapCTabSwitchBufs=1
-let g:miniBufExplModSelTarget=1
+"let g:miniBufExplMapWindowNavVim=1
+"let g:miniBufExplMapWindowNavArrows=1
+"let g:miniBufExplMapCTabSwitchBufs=1
+"let g:miniBufExplModSelTarget=1
 
 " <tag> autocomplete
-"function! InsertHtmlTag()
-        "let pat = '\c<\w\+\s*\(\s\+\w\+\s*=\s*[''#;$,()."a-z0-9]\+\)*\s*>'
-        "normal! a>
-        "let save_cursor = getpos('.')
-        "let result = matchstr(getline(save_cursor[1]), pat)
-        "if (search(pat, 'b', save_cursor[1]))
-           "normal! lyiwf>
-           "normal! a</
-           "normal! p
-           "normal! a>
-        "endif
-        ":call cursor(save_cursor[1], save_cursor[2], save_cursor[3])
-"endfunction
-"inoremap > <ESC>:call InsertHtmlTag()<CR>a
+function! InsertHtmlTag()
+        let pat = '\c<\w\+\s*\(\s\+\w\+\s*=\s*[''#$;,()."a-z0-9]\+\)*\s*>'
+        normal! a>
+        let save_cursor = getpos('.')
+        let result = matchstr(getline(save_cursor[1]), pat)
+        if (search(pat, 'b', save_cursor[1]))
+           normal! lyiwf>
+           normal! a</
+           normal! p
+           normal! a>
+        endif
+        :call cursor(save_cursor[1], save_cursor[2], save_cursor[3])
+endfunction
+inoremap > <ESC>:call InsertHtmlTag()<CR>a
 " html indent setting
-au FileType html,python,vim,javascript setl shiftwidth=2
-au FileType html,python,vim,javascript setl tabstop=2
+au FileType html,python,vim,javascript setl shiftwidth=4
+au FileType html,python,vim,javascript setl tabstop=4
+
+" mark.vim
+"source ~/.vim/plugin/mark.vim
+
+" change the cursor shape
+"if has("autocmd")
+  "au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+  "au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+  "au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+"endif
+
+" settings of cscope.
+" I use GNU global instead cscope because global is faster.
+"set cscopetag
+"set cscopeprg=gtags-cscope
+set cscopequickfix=c-,d-,e-,f-,g0,i-,s-,t-
+nmap <silent> <leader>j <ESC>:cstag <c-r><c-w><CR>
+nmap <silent> <leader>g <ESC>:lcs f c <c-r><c-w><cr>:lw<cr>
+nmap <silent> <leader>s <ESC>:lcs f s <c-r><c-w><cr>:lw<cr>
+command! -nargs=+ -complete=dir FindFiles :call FindFiles(<f-args>)
+au VimEnter * call VimEnterCallback()
+"au BufAdd *.[ch],*.cpp call FindGtags(expand('<afile>'))
+au BufWritePost *.[ch],*.cpp call UpdateGtags(expand('<afile>'))
+ 
+function! FindFiles(pat, ...)
+     let path = ''
+     for str in a:000
+         let path .= str . ','
+     endfor
+ 
+     if path == ''
+         let path = &path
+     endif
+ 
+     echo 'finding...'
+     redraw
+     call append(line('$'), split(globpath(path, a:pat), '\n'))
+     echo 'finding...done!'
+     redraw
+endfunc
+ 
+function! VimEnterCallback()
+     for f in argv()
+         if fnamemodify(f, ':e') != 'c' && fnamemodify(f, ':e') != 'h'
+             continue
+         endif
+ 
+         call FindGtags(f)
+     endfor
+endfunc
+ 
+function! FindGtags(f)
+     let dir = fnamemodify(a:f, ':p:h')
+     while 1
+         let tmp = dir . '/GTAGS'
+         if filereadable(tmp)
+             silent exe 'cs kill -1'
+             exe 'cs add ' . tmp . ' ' . dir
+             break
+         elseif dir == '/'
+             break
+         endif
+ 
+         let dir = fnamemodify(dir, ":h")
+     endwhile
+endfunc
+ 
+function! UpdateGtags(f)
+     let dir = fnamemodify(a:f, ':p:h')
+     exe 'silent !cd ' . dir . ' && global -u &> /dev/null &'
+endfunction
+map <F2> :call FindGtags(expand('<afile>'))<CR>
+
+"if filereadable("GTAGS")
+  "silent exe 'cs add GTAGS'
+"endif
+
+" abbre
+abbre em zhangzhibiao01@baidu.com
+" astyle
+map <S-F> <Esc>:%! astyle<CR>
+" large.vim
+let g:LargeFile=50
+" easymotion
+let g:EasyMotion_leader_key = ';'
+let g:solarized_termcolors=256
+"set background=dark
+"colorscheme solarized
+"colorscheme desert256
+let g:molokai_original=0
+colorscheme molokai
+"colorscheme murphy
+
+" auto load tags
+function! AutoLoadCTagsAndCScope()
+    let max = 15
+    let dir = getcwd()
+    let i = 0
+    let break = 0
+    while isdirectory(dir) && i < max
+        if filereadable(dir . '/cscope.out')
+            execute 'cs add ' . dir . '/cscope.out'
+            let break = 1
+        endif
+        if filereadable(dir . '/tags')
+            execute 'set tags =' . dir . '/tags'
+            let break = 1
+        endif
+        if break == 1
+            "execute 'lcd ' . dir
+            break
+        endif
+        let dir = strpart(dir, 0, strridx(dir, "/"))
+        let i = i + 1
+    endwhile
+endf
+nmap <F7> :call AutoLoadCTagsAndCScope()<CR>
+
+
+" vundle
+set nocompatible               " be iMproved
+filetype off                   " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" My Bundles here:
+"
+" original repos on github
+"Bundle 'tpope/vim-fugitive'
+"Bundle 'Lokaltog/vim-easymotion'
+"Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+"Bundle 'tpope/vim-rails.git'
+" vim-scripts repos
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+Bundle 'Valloric/YouCompleteMe'
+" non github repos
+"Bundle 'git://git.wincent.com/command-t.git'
+
+filetype plugin indent on     " required!
+"
+" Brief help
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install(update) bundles
+" :BundleSearch(!) foo - search(or refresh cache first) for foo
+" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+"
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Bundle command are not allowed..
+" syntastic
+call pathogen#infect()
+" ycm
+let g:ycm_global_ycm_extra_conf = '/home/zhanglistar/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+" ack & ag
+let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:ycm_max_diagnostics_to_display = 0
+
+Bundle 'wting/rust.vim'

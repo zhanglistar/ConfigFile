@@ -1,2 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =0
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/home/work/tuangouPro/ps/se/gss/alaqueryclass/test'
+let g:netrw_dirhist_2='/home/work/tuangouPro/ps/se/gss/alaqueryclass/src'
+let g:netrw_dirhist_3='/home/work/search/us/conf/server'
+let g:netrw_dirhist_4='/home/work/tuangouPro/ps/se/gss/so'
+let g:netrw_dirhist_5='/home/work/aladdin-tool'
+let g:netrw_dirhist_6='/home/work/search_gss/gss2/conf'
+let g:netrw_dirhist_7='/home/work/tuangouPro/ps/se/gss/so1.2.29/so1.2.29.1'
+let g:netrw_dirhist_8='/media/ÐÂ¼Ó¾í/Code/codenew'
