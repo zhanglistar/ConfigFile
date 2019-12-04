@@ -9,8 +9,8 @@
 #}}}
 # user {{{
 [user]
-    email = zhangzhibiao@bigo.sg
-    name = zhangzhibiao
+    email = xxx@bigo.sg
+    name = xxx 
 
 #}}}
 # include sendemail config {{{
