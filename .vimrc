@@ -26,24 +26,6 @@ set ambiwidth=single
 " use system clipboard
 set clipboard=unnamedplus
 
-" good!!! 
-"inoremap $1 ()<esc>i
-"inoremap $2 []<esc>i
-"inoremap $3 {}<esc>i
-"inoremap $4 {<esc>o}<esc>O
-"inoremap $q ''<esc>i
-"inoremap $e ""<esc>i
-"inoremap $t <><esc>i
-"
-"vnoremap $1 <esc>`>a)<esc>`<i(<esc>
-"vnoremap $2 <esc>`>a]<esc>`<i[<esc>
-"vnoremap $3 <esc>`>a}<esc>`<i{<esc>
-"vnoremap $$ <esc>`>a"<esc>`<i"<esc>
-"vnoremap $q <esc>`>a'<esc>`<i'<esc>
-"vnoremap $e <esc>`>a"<esc>`<i"<esc>
-"
-"map j <C-f>
-"map <space> <C-f>
 map n <C-b>
 
 "
@@ -407,12 +389,12 @@ nmap <F7> :call AutoLoadCTagsAndCScope()<CR>
 set nocompatible               " be iMproved
 filetype off                   " required!
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle
 " required! 
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 " My Bundles here:
 "
@@ -422,28 +404,22 @@ Bundle 'gmarik/vundle'
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 "Bundle 'tpope/vim-rails.git'
 " vim-scripts repos
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-Bundle 'Valloric/YouCompleteMe'
+"Plugin 'L9'
+Plugin 'FuzzyFinder'
+Plugin 'wting/rust.vim'
+Plugin 'Valloric/YouCompleteMe'
 " non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
+call vundle#end()
 
 filetype plugin indent on     " required!
-"
-" Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-"
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed..
 " syntastic
 call pathogen#infect()
 " ycm
-let g:ycm_global_ycm_extra_conf = '/home/zhanglistar/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '/home/listar/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 " ack & ag
 let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:ycm_max_diagnostics_to_display = 0
 
-Bundle 'wting/rust.vim'
