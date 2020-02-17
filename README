@@ -1,4 +1,8 @@
 Configuration of vim, urxvt, xmodmap and tmux on Ubuntu.
-Currently, it is Ubuntu 12.04 lts.
+Currently, it is Ubuntu 18.04 lts.
 END.
+<<<<<<< HEAD
 test
+=======
+
+>>>>>>> 29d92a6e0a5662a44b1dd3ddc073e2ad6043a9d4
