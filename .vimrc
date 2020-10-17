@@ -1,6 +1,7 @@
 set nocp
 set backspace=indent,eol,start
 set t_Co=256
+set mouse=a
 syntax enable
 filetype plugin on
 
@@ -404,7 +405,7 @@ Plugin 'gmarik/vundle'
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 "Bundle 'tpope/vim-rails.git'
 " vim-scripts repos
-"Plugin 'L9'
+Plugin 'L9'
 Plugin 'FuzzyFinder'
 Plugin 'wting/rust.vim'
 Plugin 'Valloric/YouCompleteMe'
@@ -418,7 +419,7 @@ filetype plugin indent on     " required!
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed..
 " syntastic
-call pathogen#infect()
+"call pathogen#infect()
 " ycm
 let g:ycm_global_ycm_extra_conf = '/home/listar/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 " ack & ag
